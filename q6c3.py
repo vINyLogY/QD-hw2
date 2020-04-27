@@ -63,7 +63,7 @@ def main():
         for j in range(shape[1]):
             cap[i, j] = v_rst(x[i, j], y[i, j])
 
-    for i in [0, 1, 2, 5, 10, 20, 50, 100, 150, 195, 198, 199]:
+    for i in [4, 5]:
         vec = v[i]
         print('E_{}: {}'.format(i, e[i]))
         z_lim = (np.max(np.abs(vec)) * 15) / 10

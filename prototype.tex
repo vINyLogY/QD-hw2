@@ -83,7 +83,53 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
       &=\sqrt{\frac{2}{w}}\sin\qty(n \pi)\exp\qty(\frac{\iu\qty(mvw^2 - 2E_n^iat)}{2\hbar w(t)}) = 0.
     \end{align*}
     Therefore, $\Phi_n(x,\ t)$ satisfies the boundary conditions, and hence, $\Psi(x,\ t)$ satisfies the boundary conditions.
-    \item At $t=0$,
+
+    Next, we show that the wavefunction itself also satisfies the TDSE. Since TDSE is linear, we only need to show that $\Phi_n(x,\ t)$ satisfies TDSE for all $n$. Note that for $0 \le x \le w$
+    \begin{align*}
+      \iu\hbar \pdv{t} \Phi_n(x,\ t) =&\ \iu\hbar \pdv{t}  \sqrt{\frac{2}{w(t)}}\sin\qty(\frac{n\pi}{w(t)}x)\exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w(t)}) \\
+      =&\ \iu\hbar \Biggl[
+      \frac{-v}{2w}\sqrt{\frac{2}{w}}\sin\qty(\frac{n\pi}{w}x)\exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w}) \\
+      &+\
+      \frac{-n\pi x v}{w^2}\sqrt{\frac{2}{w}}\cos\qty(\frac{n\pi}{w}x)\exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w}) \\
+      &+\
+      \frac{\iu}{2\hbar}\frac{-2E_n^ia w - v \qty(mvx^2 - 2E_n^iat)}{w^2}\sqrt{\frac{2}{w}}\sin\qty(\frac{n\pi}{w}x)\exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w})
+      \Biggl]\\
+      =&\
+      \sqrt{\frac{2}{w}}\exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w})\qty[ 
+      \frac{2E_n^ia^2 + mv^2x^2 -\iu\hbar wv}{2w^2} \sin\qty(\frac{n\pi}{w}x) - 
+      \frac{\iu\hbar n\pi x v}{w^2} \cos\qty(\frac{n\pi}{w}x)
+      ],
+    \end{align*}
+    and for $0 \le x \le w$,
+    \begin{align*}
+      \hat{H}\Phi_n(x,\ t) =&\ -\frac{\hbar^2}{2m}\pdv[2]{x} \Phi_n(x,\ t)\\ 
+      =&\  -\frac{\hbar^2}{2m}\sqrt{\frac{2}{w}} \pdv{x} \exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w})\qty[
+        \frac{n\pi}{w}\cos\qty(\frac{n\pi}{w}x) + \frac{\iu mvx}{\hbar w}\sin\qty(\frac{n\pi}{w}x)] \\
+      =&\  -\frac{\hbar^2}{2m}\sqrt{\frac{2}{w}} \Biggl[\frac{\iu mvx}{\hbar w}\exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w})\qty[
+        \frac{n\pi}{w}\cos\qty(\frac{n\pi}{w}x) + \frac{\iu mvx}{\hbar w}\sin\qty(\frac{n\pi}{w}x)]\\
+      &+\ \exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w})\qty[
+        -\frac{n^2\pi^2}{w^2}\sin\qty(\frac{n\pi}{w}x) + \frac{\iu mv}{\hbar w}\sin\qty(\frac{n\pi}{w}x) + \frac{\iu n\pi mvx}{\hbar w^2}\cos\qty(\frac{n\pi}{w}x)] \Biggl] \\
+      =&\ \sqrt{\frac{2}{w}} \exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w})\qty[
+        \frac{\hbar^2n^2\pi^2 + m^2v^2x^2 -\iu\hbar mvw}{2mw^2} \sin\qty(\frac{n\pi}{w}x)  
+        -\frac{\iu\hbar n\pi vx}{w^2} \cos\qty(\frac{n\pi}{w}x)
+      ] \\
+      =&\ \sqrt{\frac{2}{w}} \exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w})\qty[
+        \frac{2E_n^i a^2 + mv^2x^2 -\iu\hbar vw}{2w^2} \sin\qty(\frac{n\pi}{w}x)  
+        -\frac{\iu\hbar n\pi vx}{w^2} \cos\qty(\frac{n\pi}{w}x)
+      ].
+    \end{align*}
+    Hence, for $0 \le x \le w$, $\iu\hbar \pdv{t} \Phi_n(x,\ t) = \hat{H}\Phi_n(x,\ t)$.
+    Therefore, the linear combination of $\Phi_n(x,\ t)$ also satisfies TDSE.
+    \item 
+    Note that $\set{\Phi_n(x,\ t)}$ is an orthonormal basis at time $t$. To prove this, one only need to find that
+    \begin{align*}
+      &\ \int_0^w \Phi_n(x,\ t)^*\Phi_k(x,\ t) \dd{x} \\
+      =&\ \frac{2}{w} \int_0^w \qty( \sin\qty(\frac{n\pi}{w}x) \exp\qty(\frac{\iu\qty(mvx^2 - 2E_n^iat)}{2\hbar w}) )^*
+      \sin\qty(\frac{k\pi}{w}x)\exp\qty(\frac{\iu\qty(mvx^2 - 2E_k^iat)}{2\hbar w}) \dd{x}\\
+      =&\ \frac{2}{w}\exp\qty(\frac{\iu(E_k^i - E_n^i)at}{\hbar w}) \int_0^w \sin\qty(\frac{n\pi}{w}x)\sin\qty(\frac{k\pi}{w}x) \dd{x} \\
+      =&\ -\frac{1}{w}\exp\qty(\frac{\iu(E_k^i - E_n^i)at}{\hbar w}) \int_0^w \qty(\cos\frac{(n + k)\pi x}{w} - \cos\frac{(n - k)\pi x}{w}) \dd{x}  = \delta_{nk}.\\
+    \end{align*}
+    At $t=0$,
     \begin{align*}
       c_n =& \int_0^a \Phi_n(x,\ 0)^* \Psi(x,\ 0) \dd{x} = \int_0^a \qty( \sqrt{\frac{2}{a}}\sin\qty(\frac{n\pi}{a}x)e^{\frac{\iu mvx^2}{2\hbar a}})^*  \sqrt{\frac{2}{a}}\sin\qty(\frac{\pi x}{a}) \dd{x}\\
       =& \frac{2}{a} \int_0^a \sin\qty(n\frac{\pi x}{a})e^{-\iu\frac{mva}{2\pi^2\hbar} \qty(\frac{\pi x}{a})^2} \sin\qty(\frac{\pi x}{a}) \dd{x}.
@@ -141,27 +187,28 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
       \\ =&  e^{\iu\theta'(t)} \sqrt{\frac{2}{w}}\sin\qty(\frac{\pi}{w(t)}x),
     \end{align*}
     where $\theta'(t) = \frac{mvx^2 - 2E_1^iat}{2\hbar w(t)} \approx - \frac{\pi^2\hbar^2at}{2ma^2\hbar a(1 + t/\Delta t)} = -\frac{\pi^2\hbar a t}{2ma^2 (1 + t/\Delta t)}$, which is consistent with the result from the adiabatic theorem at the limit of $v \to 0$.
-    \item If the expansion of the well can be considered as a sudden perturbation, that is, the stationary state does not change as $t$ goes from $0$ to $\Delta t$, that is, $\Psi(x,\ \Delta t) \approx \Psi(x,\ 0) = \sqrt{2/a}\sin(\pi x / a)$;
+    \item If the expansion of the well can be considered as a sudden perturbation, that is, the stationary state does not change as time $t$ goes from $0$ to $\Delta t$, that is, $\Psi(x,\ \Delta t) \approx \Psi(x,\ 0) = \sqrt{2/a}\sin(\pi x / a)$;
     
     On the other hand, since $\comm{H(t_1)}{H(t_2)} = 0$ for all $t_1,\ t_2 \in [0,\ \Delta t]$,
     \begin{align*}
-      \Psi(x,\ \Delta t) = e^{-\iu \bar{H} \Delta t/\hbar} \sum_{n=1}^\infty c_n \Phi_n (x,\ 0) = e^{-\iu E^i t/\hbar}\sum_{n=1}^\infty c_n e^{-\iu(E_n - E^i)t/\hbar} \Phi_n (x,\ 0).
+      \Psi(x,\ \Delta t) =&\ \exp\qty[-\frac{\iu}{\hbar}\int_0^t H(t_1) \dd{t_1}] \sum_{n=1}^\infty c_n \Phi_n (x,\ 0) = e^{-\iu \bar{H} \Delta t/\hbar} \sum_{n=1}^\infty c_n \Phi_n (x,\ 0) \\
+      =&\ e^{-\iu E^i t/\hbar}\sum_{n=1}^\infty c_n e^{-\iu(E_n - E^i)t/\hbar} \Phi_n (x,\ 0).
     \end{align*} 
-    where $E^i$ is the energy at initial state. Notice that only terms satisfying $t > \hbar/(E_n - E^i)$ will make appreciable change, and for the sudden perturbation limit, we hence require $t \ll \hbar/(E_n - E^i)$ for all $n$, that is, $t \ll \hbar/\Delta \bar{H}$.
+    where $\bar{H} = \int_0^t H(t_1) \dd{t_1}$ and $E^i$ is the energy at initial state. Notice that only terms satisfying $t > \hbar/(E_n - E^i)$ will make appreciable change, and for the sudden perturbation limit, we hence require $t \ll \hbar/(E_n - E^i)$ for all $n$, that is, $t \ll \hbar/\Delta \bar{H}$.
   \end{enumerate}
 
-  \item Landau--Zener theory gives a formula that predicts the nonadiabatic transit possibility. If the hamiltonian is
+  \item Landau--Zener theory gives a formula that predicts the nonadiabatic transit probability. If the hamiltonian is
   \begin{align*}
     H =& H_0 + V, \\
     H_0 =& E_1(t)\op{1} + E_2(t)\op{2}, \\
     V =& \frac{\Delta}{2}\op{1}{2} + \frac{\Delta}{2}\op{1}{2},
   \end{align*}
-  where $E_1(t) = vt/2$, $E_2(t) = -vt/2$,  and we start with $\ket{(\psi(t=-\infty))} = \ket{1}$, then for $t \to +\infty$, Laudau--Zener theory gives the nonadiabatic transit possibility
+  where $E_1(t) = vt/2$, $E_2(t) = -vt/2$,  and we start with $\ket{(\psi(t=-\infty))} = \ket{1}$, then for $t \to +\infty$, Laudau--Zener theory gives the nonadiabatic transit probability
   \begin{align*}
-    P_{1\to 2} = 1-e^{\frac{\Delta^2\pi}{2\hbar v}}.
+    P_{1\to 2} = 1-\exp\qty(-\frac{\pi\Delta^2}{2\hbar v}).
   \end{align*}
-  For instance, for the molecular dynamics Laudau--Zener indicates that the nonadiabatic transitions take place only when the surface gap attains a local minimum for each classical trajectory, which gives the theoretical basis of surface hopping algorithms.
-
+  For instance, for the molecular dynamics Laudau--Zener gives the theoretical basis of surface hopping algorithms.
+  We can plug the velocity of the classical trajectory as the group velocity and plug it in the Laudau--Zener formula, and get the probability of surface hopping for our simulation.
   \item
   \begin{enumerate}[(i)]
     \item The Floquet Hamiltonian is
@@ -203,15 +250,19 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
     \end{align*}
     where $A =  \frac{\hbar\omega_0}{2} \mqty(-1 & \\ & 1)$ and $B = b\mqty( & 1 \\ 1 &)$.
 
-    Truncate the basis by $\set{\ket{\alpha n}}_{n=-100}^{100}$ and diagonalize the representation matrix of $\mathcal{H}$ numerically, and note the that from the original structure of $\mathcal{H}$, if $\mathcal{E}$ is its eigenenergy then $\mathcal{E} + \hbar\omega$ is also its eigenenergy, then we only need to pick the one as quasienergy in a equivalence class that is defined by $\sim$, where $A \sim B$ if and only if there is an integer $n$ such that $A = B+n\hbar\omega$. Here I chose the eigenvalues of the truncated matrix that most close to 0 to represent the that quasienergies of the infinite matrix. The result is in Figure~\ref{fig:q3-quasienergy}
+    Truncate the basis by $\set{\ket{\alpha n}}_{n=-100}^{100}$ and diagonalize the representation matrix of $\mathcal{H}$ numerically, and note the that from the original structure of $\mathcal{H}$, if $\mathcal{E}$ is its eigenenergy then $\mathcal{E} + \hbar\omega$ is also its eigenenergy, then we only need to pick the one as quasienergy in a equivalence class that is defined by $\sim$, where $A \sim B$ if and only if there is an integer $n$ such that $A = B+n\hbar\omega$. Here I chose the eigenvalues of the truncated matrix that most close to 0 to represent the that quasienergies of the infinite matrix. The result is in Figure~\ref{fig:q3-quasienergy}. Note that for each given $k$ the two curves are not crossing at around $\omega_0/\omega = 2,\ 4,\ 6,\ 8,\ \textit{etc.}$
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\linewidth]{q3-quasienergy.pdf}
+      \includegraphics[width=0.6\linewidth]{q3-1-2.pdf}
+      \includegraphics[width=0.6\linewidth]{q3-1-4.pdf}
+      \includegraphics[width=0.6\linewidth]{q3-1-6.pdf}
+      \includegraphics[width=0.6\linewidth]{q3-1-8.pdf}
       \caption{Quasienergies vs.\ $\omega_0$}
       \label{fig:q3-quasienergy}
     \end{figure} 
     Note that the off-diagonal coupling mixes these states, and the non-zero off-diagonal terms will directly mix the the dressed states which differ in energy by $\hbar\omega$ and 
-    When $0<\omega_0/\omega\lesssim 2$, $0 < \Delta$ to make $\ket{E_1}$ mix with $\ket{E_2}$ we need only one Floquet Brillouin zone since the only the dressed $\ket{E_1}$; when $2 \lesssim \omega_0/\omega \lesssim 4$, we need 2 Floquet Brillouin zone; and so on.
+    When $0<\omega_0/\omega\lesssim 2$, $0 < \Delta$ to make $\ket{E_1}$ mix with $\ket{E_2}$ we need only one Floquet Brillouin zone; when $2 \lesssim \omega_0/\omega \lesssim 4$, we need 2 Floquet Brillouin zone; and so on.
     This can be seen by selecting specific submatrix to diagonalize for the whole matrix, \ie, change the truncated basis by $\set{\ket{\alpha n}}_{n=-k}^{k}$, and the results are also plotted in Figure~\ref{fig:q3-quasienergy}.
     \item The time averaged transition probability in Eq.~19 in Shirley 1965 can be written in our notations as
     \begin{align*}
@@ -245,21 +296,21 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
       \label{fig:q3-transition}
     \end{figure}
     \item 
-    It is clear that there are peaks in Figure~\ref{fig:q3-transition} at $\omega_0/\omega \approx 1,\ 3,\ 5$, and the peaks are almost invisible as $\omega_0/\omega$ gets larger.
-    This this because when $\omega_0/\omega$ is nearly odd, the system is more likely to absorb correct amount of energy in laser and then the transition happens, while when $\omega_0/\omega$ is nearly even, since the Floquet modes shares almost the same energy, it is not that likely to absorb correct amount of energy in laser.
+    It is clear that there are peaks in Figure~\ref{fig:q3-transition} at $\omega_0/\omega \approx 1,\ 3,\ 5,\ 7$, \emph{etc.}
+    These results coincide with the ones from perturbation theory, where only odd order of perturbations gives nonzero terms between the two states.
   \end{enumerate}
 
   \item
   \begin{enumerate}[(i)]
-    \item Let $\set{\ket{n}}_{n=1}^{\infty}$ be an orthonormal and complete basis. Then 
+    \item\label{item:comm} Let $\set{\ket{n}}_{n=1}^{\infty}$ be an orthonormal and complete basis. Then 
     \begin{align*}
       \tr(\hat{A}\hat{B}) =& \sum_n \ev{\hat{A}\hat{B}}{n} = \sum_n \bra{n}\hat{A}\sum_m\ket{m}\bra{m}\hat{B}\ket{n} = \sum_n \sum_m \mel{n}{\hat{A}}{m} \mel{m}{\hat{B}}{n} \\
       =& \sum_m \sum_n \mel{m}{\hat{B}}{n} \mel{n}{\hat{A}}{m} = \sum_m \ev{\hat{B}\hat{A}}{m} = \tr(\hat{B}\hat{A});
     \end{align*}
-    and
+    and if the system is a mixed state with $\hat{\rho} = \sum_k p_k \ket{\Psi_k}$, then
     \begin{align*}
-      \ev{\hat{A}} = \ev{\hat{A}}{\Psi} = \bra{\Psi}\hat{A}\sum_n \ket{n}\bra{n}\ket{\Psi} 
-      = \sum_n \bra{\Psi}\hat{A}\ket{n}\bra{n}\ket{\Psi} =\sum_n \bra{n}\ket{\Psi} \bra{\Psi}\hat{A}\ket{n} = \sum_n \bra{n}\hat{\rho}\hat{A}\ket{n} = \tr(\hat{\rho} \hat{A}).
+      \ev{\hat{A}} =&\ \sum_k p_k \ev{\hat{A}}{\Psi_k} = \sum_k p_k\bra{\Psi_k}\hat{A}\sum_n \ket{n}\bra{n}\ket{\Psi_k} \\
+      =&\ \sum_{nk} p_k\bra{\Psi_k}\hat{A}\ket{n}\bra{n}\ket{\Psi_k} =\sum_n \bra{n}\sum_k p_k\ket{\Psi_k} \bra{\Psi_k}\hat{A}\ket{n} = \sum_n \bra{n}\hat{\rho}\hat{A}\ket{n} = \tr(\hat{\rho} \hat{A}).
     \end{align*}
     \item For $\ket{E_1}$:
     \begin{align*}
@@ -327,6 +378,17 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
       \caption{Time-dependency of entropy for spin--boson model.}
       \label{fig:q4-ce}
     \end{figure}
+
+    Now consider a closed system, that is, its density operator satisfies the Liouville equation $\pdv{\rho}{t} = -\frac{\iu}{\hbar}\comm{H}{\rho}$, then
+    \begin{align*}
+      \dv{S}{t} =& - \dv{t} \tr(\rho \ln\rho) =  \tr(\dv{t}\rho \ln\rho)
+      = -\tr(\pdv{\rho}{t}\ln\rho + \pdv{\rho}{t}) = \frac{\iu}{\hbar}\qty(\tr(H\rho\ln\rho) - \tr(\rho H \ln\rho) + \tr(H\rho) - \tr(H\rho)).
+    \end{align*}
+    From \ref{item:comm} we know that $\tr(\rho H) = \tr(H\rho)$ and $\tr(\rho H \ln\rho) = \tr(H (\ln\rho)\rho)$. On the other hand, since $\ln \rho$ is a function of $\rho$, it commutes with $\rho$, and hence $\tr(H (\ln\rho)\rho) = \tr(H\rho\ln\rho)$.
+    Therefore,
+    \begin{align*}
+      \dv{S}{t} =& \frac{\iu}{\hbar}\qty(\tr(H\rho\ln\rho) - \tr(H\rho\ln\rho) + \tr(H\rho) -  \tr(H\rho)) = 0.
+    \end{align*}
   \end{enumerate}
 
   \item
@@ -400,12 +462,9 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
       \rho_\mathrm{W} =& \frac{1}{2\pi\hbar}\int_{-\infty}^{\infty} \dd{y} \mel{q-y/2}{\hat{\rho}}{q + y/2}e^{\iu p y / \hbar} \\
       =&\frac{1}{2\pi\hbar}\int_{-\infty}^{\infty} \dd{y} \psi(q+y/2)^*\psi(q-y/2)e^{\iu p y / \hbar},
     \end{align*}
-    Then
-    \begin{align*}
-      \lim_{\hbar \to 0}\rho_\mathrm{W} =& \frac{1}{2\pi\hbar}\int_{-\infty}^{\infty} \dd{y} \mel{q-y/2}{\hat{\rho}}{q + y/2}e^{\iu p y / \hbar} \\
-      =&\frac{1}{2\pi}\int_{-\infty}^{\infty} \dd{y} \psi(q+y/2)^*\psi(q-y/2)\lim_{\hbar \to 0}e^{\iu p y / \hbar}/\hbar,
-    \end{align*}
-    and note that $e^{\iu p y / \hbar}$ oscillates when $\hbar \to +0$. Therefore, $\rho_\mathrm{W}$ is singular for a pure quantum state.
+    Then,
+
+    (TBF)
     
     \item We need the following lemma.
     \begin{lemma}
@@ -429,13 +488,13 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
     Recall that $\qty(\hat{A}\hat{B})_\mathrm{W} = A_\mathrm{W} e^{-\frac{\iu\hbar}{2}\tensor{\Lambda}}B_\mathrm{W}$, where $\tensor{\Lambda} = \overleftarrow{\pdv{p}}\overleftarrow{\pdv{q}} - \overrightarrow{\pdv{q}}\overrightarrow{\pdv{p}}$, therefore,
     \begin{align*}
       \dv{\qty(\hat{O}_H)_\mathrm{W}}{t} 
-      =& -\frac{\iu}{\hbar}((\hat{O}_H)_\mathrm{W} e^{-\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W} - \qty((\hat{O}_H)_\mathrm{W} e^{-\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W})^*) \\
-      =& -\frac{\iu}{\hbar}((\hat{O}_H)_\mathrm{W} e^{-\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W} - (\hat{O}_H)_\mathrm{W}^* e^{\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W}^*)\\
+      =& -\frac{\iu}{\hbar}\qty((\hat{O}_H)_\mathrm{W} e^{-\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W} - \qty((\hat{O}_H)_\mathrm{W} e^{-\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W})^*) \\
+      =& -\frac{\iu}{\hbar}\qty((\hat{O}_H)_\mathrm{W} e^{-\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W} - (\hat{O}_H)_\mathrm{W}^* e^{\frac{\iu\hbar}{2}\tensor{\Lambda}} (\hat{H}_H)_\mathrm{W}^*)\\
       =& -\frac{2}{\hbar}(\hat{O}_H)_\mathrm{W} \sin{\frac{\hbar\tensor{\Lambda}}{2}} (\hat{H}_H)_\mathrm{W}.
     \end{align*}
     In the last step we have applied the fact that $(\hat{O}_H)_\mathrm{W}$ is real for any
     Hermitian $\hat{O}_H$ since $(\hat{O}_H)_\mathrm{W} = (\hat{O}_H^\dagger)_\mathrm{W} = ((\hat{O}_H)_\mathrm{W})^*$.
-    \item When $\hbar \to 0$, $(\hat{O}_H)_\mathrm{W} = O^c + \hbar O_1 + o(\hbar)$, $(\hat{H}_H)_\mathrm{W} = H^c + \hbar H_1 + o(\hbar)$, and $\sin {\frac{\hbar\tensor{\Lambda}}{2}} = \frac{\hbar\tensor{\Lambda}}{2} + o(\hbar)$, then,
+    \item\label{item:limit} When $\hbar \to 0$, $(\hat{O}_H)_\mathrm{W} = O^c + \hbar O_1 + o(\hbar)$, $(\hat{H}_H)_\mathrm{W} = H^c + \hbar H_1 + o(\hbar)$, and $\sin {\frac{\hbar\tensor{\Lambda}}{2}} = \frac{\hbar\tensor{\Lambda}}{2} + o(\hbar)$, then,
     \begin{align*}
      & \dv{\qty(\hat{O}_H)_\mathrm{W}}{t} = -\frac{2}{\hbar}(\hat{O}_H)_\mathrm{W} \sin{\frac{\hbar\tensor{\Lambda}}{2}} (\hat{H}_H)_\mathrm{W}\\
      \Rightarrow & \dv{O^c}{t} + o(1) = -2O^c\frac{\tensor{\Lambda}}{2} H^c + o(1) \\
@@ -443,6 +502,10 @@ Let $\iu = \sqrt{-1}$, $o(\cdot)$ and $O(\cdot)$ are little-o and big-O notation
     \end{align*} 
     where $\acomm{\cdot}{\cdot}_P$ is the Poisson bracket.
     \item When we use the wigner representation and take the limit of $\hbar \to 0$ then we recover the classical mechanics, which means that the classical mechanics is a specific representation of quantum mechanics under the limit that Planck constant is small enough.
+    
+    From \ref{item:limit} we know that as $\hbar \to 0$, the dynamics of the physical operator in the Wigner representation coincide with the equation of motion in classical mechanics.
+
+    (The density operator in the Wigner representation should has the same formalism of the volume element in the phase space in classical mechanics.)
   \end{enumerate}
 
   \item Code is available at \url{https://github.com/vINyLogY/QD-hw2}.

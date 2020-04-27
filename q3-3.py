@@ -16,7 +16,15 @@ rc('text', usetex=True)
 DTYPE = np.complex128
 
 # set hbar omega = 1
-omega_0 = np.linspace(0, 8, 800)
+omega_0 = np.concatenate((
+    np.linspace(0, 2.5, 100, endpoint=False),
+    np.linspace(2.5, 3, 1000, endpoint=False),
+    np.linspace(3, 4.85, 100, endpoint=False),
+    np.linspace(4.85, 4.95, 1000, endpoint=False),
+    np.linspace(4.95, 6.9349, 100, endpoint=False),
+    np.linspace(6.9349, 6.9351, 1000, endpoint=False),
+    np.linspace(6.9351, 8, 100)
+))
 b = 1.0 / 3.0
 
 
